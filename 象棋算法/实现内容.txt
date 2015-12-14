@@ -1,0 +1,4 @@
+﻿ChessBasics 保存棋子位置，棋子基本信息
+Chessman 定义各个棋子
+moves 生成当前局面全部走法
+Scoring 对局面进行打分
