@@ -59,5 +59,15 @@ namespace 象棋算法
             }
             Score_for_red.troops = troops;
         }
+
+        public void GetRedPositions(Chessboard phase)
+        {
+            int position = 0;
+            Point falsePoint = new Point(-1, -1);
+            for(int i=0;i<16;i++)
+            {
+                if (phase.Red_Location[i] != falsePoint) ;
+            }
+        }
     }
 }
