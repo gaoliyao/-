@@ -62,7 +62,7 @@ namespace 象棋算法
 
         };
 
-        public int juege_who(int i)
+        public static int juege_who(int i)
 
         {
 
@@ -72,9 +72,9 @@ namespace 象棋算法
 
         }
 
-        List<Chessboard> All_moves=new List<Chessboard>();
+        static List<Chessboard> All_moves=new List<Chessboard>();
 
-        public List<Chessboard> AllMove(Chessboard phase)
+        public static List<Chessboard> AllMove(Chessboard phase)
         {
             int player = Convert.ToInt16(phase.Player);
             for(int i=0;i<9;i++)
@@ -90,7 +90,7 @@ namespace 象棋算法
             else return All_moves;
         }
 
-        public List<Chessboard> Move(Chessboard phase, int x, int y)
+        public static List<Chessboard> Move(Chessboard phase, int x, int y)
 
         {
             int player = Convert.ToInt16(phase.Player);
@@ -137,9 +137,9 @@ namespace 象棋算法
         }
 
 
-        
-        
-        public bool Xiaable(Chessboard phase, Point point, int oppo)
+
+
+        public static bool Xiaable(Chessboard phase, Point point, int oppo)
 
         {
 
@@ -164,7 +164,7 @@ namespace 象棋算法
         }
 
 
-        public List<Chessboard> Red_Move_Shuai(Chessboard phases, int x, int y)
+        public static List<Chessboard> Red_Move_Shuai(Chessboard phases, int x, int y)
 
         {
 
@@ -377,7 +377,7 @@ namespace 象棋算法
 
         }           //帅的走法生成
 
-        public List<Chessboard> Red_Move_Shi(Chessboard phases, int x, int y)
+        public static List<Chessboard> Red_Move_Shi(Chessboard phases, int x, int y)
 
         {
 
@@ -659,7 +659,7 @@ namespace 象棋算法
 
         }
 
-        public List<Chessboard> Black_Move_Shuai(Chessboard phases, int x, int y)
+        public static List<Chessboard> Black_Move_Shuai(Chessboard phases, int x, int y)
 
         {
 
@@ -872,7 +872,7 @@ namespace 象棋算法
 
         }           //帅的走法生成
 
-        public List<Chessboard> Black_Move_Shi(Chessboard phases, int x, int y)
+        public static List<Chessboard> Black_Move_Shi(Chessboard phases, int x, int y)
 
         {
 
@@ -1153,22 +1153,22 @@ namespace 象棋算法
         }
 
 
-        
-
-
-        public Point v1 = new Point(1, 1);
-
-        public Point v2 = new Point(-1, 1);
-
-        public Point v3 = new Point(-1, -1);
-
-        public Point v4 = new Point(1, -1);
-
-        public List<Point> vector = new List<Point>();
 
 
 
-        public List<Chessboard> Red_Move_Xiang(Chessboard phases, int x, int y)
+        public static Point v1 = new Point(1, 1);
+
+        public static Point v2 = new Point(-1, 1);
+
+        public static Point v3 = new Point(-1, -1);
+
+        public static Point v4 = new Point(1, -1);
+
+        public static List<Point> vector = new List<Point>();
+
+
+
+        public static List<Chessboard> Red_Move_Xiang(Chessboard phases, int x, int y)
 
         {
 
@@ -1235,7 +1235,7 @@ namespace 象棋算法
             return moves;
 
         }
-        public bool Red_isLegal_Xiang(Point point)
+        public static bool Red_isLegal_Xiang(Point point)
 
         {
 
@@ -1257,7 +1257,7 @@ namespace 象棋算法
 
         }
 
-        public List<Chessboard> Black_Move_Xiang(Chessboard phases, int x, int y)
+        public static List<Chessboard> Black_Move_Xiang(Chessboard phases, int x, int y)
 
         {
 
@@ -1324,7 +1324,7 @@ namespace 象棋算法
             return moves;
 
         }
-        public bool Black_isLegal_Xiang(Point point)
+        public static bool Black_isLegal_Xiang(Point point)
 
         {
 
@@ -1345,7 +1345,7 @@ namespace 象棋算法
             return bRet;
 
         }
-        public bool isLegal_Ma(Point point)
+        public static bool isLegal_Ma(Point point)
 
         {
 
@@ -1368,7 +1368,7 @@ namespace 象棋算法
         }
 
 
-        public List<Chessboard> Move_Ma(Chessboard phases, int x, int y)
+        public static List<Chessboard> Move_Ma(Chessboard phases, int x, int y)
 
         {
 
@@ -1464,7 +1464,7 @@ namespace 象棋算法
 
         }
 
-        public bool Pao_Legal_x(Chessboard phases,int a,int x,int y)
+        public static bool Pao_Legal_x(Chessboard phases,int a,int x,int y)
         {
             if (a == x) return false;
             int opponent = Convert.ToInt16(!phases.Player);
@@ -1486,7 +1486,7 @@ namespace 象棋算法
             else return false;
         }
 
-        public bool Pao_Legal_y(Chessboard phases, int a, int x, int y)
+        public static bool Pao_Legal_y(Chessboard phases, int a, int x, int y)
         {
             if (a == y) return false;
             int opponent = Convert.ToInt16(!phases.Player);
@@ -1508,7 +1508,7 @@ namespace 象棋算法
             else return false;
         }
 
-        public List<Chessboard> Move_Pao(Chessboard phases,int x,int y)
+        public static List<Chessboard> Move_Pao(Chessboard phases,int x,int y)
         {
             //算法思想 上下左右            
             List<Chessboard> moves = new List<Chessboard>();
@@ -1544,7 +1544,7 @@ namespace 象棋算法
 
         }
 
-        public List<Chessboard> Move_Ju(Chessboard phases,int x,int y)
+        public static List<Chessboard> Move_Ju(Chessboard phases,int x,int y)
         {
             List<Chessboard> moves = new List<Chessboard>();
             int opponent = Convert.ToInt16(!phases.Player);
@@ -1667,7 +1667,7 @@ namespace 象棋算法
             if (moves.Count == 0) return null;
             return moves;
         }
-        public List<Chessboard> Red_Move_Bing(Chessboard phases,int x,int y)
+        public static List<Chessboard> Red_Move_Bing(Chessboard phases,int x,int y)
         {
             List<Chessboard> moves = new List<Chessboard>();
             int self = Convert.ToInt16(phases.Player);
@@ -1705,10 +1705,10 @@ namespace 象棋算法
             if (moves.Count == 0) return null;
             else return moves;
         }
-        
 
 
-    public List<Chessboard> Black_Move_Bing(Chessboard phases, int x, int y)
+
+        public static List<Chessboard> Black_Move_Bing(Chessboard phases, int x, int y)
     {
         List<Chessboard> moves = new List<Chessboard>();
         int self = Convert.ToInt16(phases.Player);

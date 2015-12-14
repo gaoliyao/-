@@ -21,10 +21,10 @@ namespace 象棋算法
             public int isGetted;
         }
 
-        StaticScore Score_for_red;
-        StaticScore Score_for_black;
+        static StaticScore Score_for_red;
+        static StaticScore Score_for_black;
 
-        public int Score(Chessboard phase)
+        public static int Score(Chessboard phase)
         {
             int score_red = -1;
             int score_black = -1;
@@ -37,27 +37,27 @@ namespace 象棋算法
             else return score_black - score_red;
         }
 
-        public void GetScore(Chessboard phase)
+        public  static void GetScore(Chessboard phase)
         {
             GetScoreRed(phase);
             GetScoreBlack(phase);
         }
 
-        public void GetScoreRed(Chessboard phase)
+        public static void GetScoreRed(Chessboard phase)
         {
             GetRedTroops(phase);
             GetRedAll(phase);
             Score_for_red.isGetted = 1;
         }
 
-        public void GetScoreBlack(Chessboard phase)
+        public static void GetScoreBlack(Chessboard phase)
         {
             GetBlackTroops(phase);
             GetBlackAll(phase);
             Score_for_black.isGetted = 1;
         }
 
-        public void GetRedTroops(Chessboard phase)
+        public static void GetRedTroops(Chessboard phase)
         {
             int troops = 0;
             if (phase.Red_Chessman[0] == -1)
@@ -75,7 +75,7 @@ namespace 象棋算法
             
         }
 
-        public int RedPositionCount(int i,Point point)
+        public static int RedPositionCount(int i,Point point)
         {
             if (Score_for_red.All == -1) return -1;
             if (i == 0)
@@ -119,7 +119,7 @@ namespace 象棋算法
         }
 
 
-        public void GetRedAll(Chessboard phase)
+        public static void GetRedAll(Chessboard phase)
         {
             int position = 0;
             Point falsePoint = new Point(-1, -1);
@@ -138,7 +138,7 @@ namespace 象棋算法
 
 
 
-        public void GetBlackTroops(Chessboard phase)
+        public static void GetBlackTroops(Chessboard phase)
         {
             int troops = 0;
             if (phase.Black_Chessman[0] == -1)
@@ -156,7 +156,7 @@ namespace 象棋算法
 
         }
 
-        public int BlackPositionCount(int i, Point point)
+        public static int BlackPositionCount(int i, Point point)
         {
             if (Score_for_black.All == -1) return -1;
             point = Point.Point_reverse(point);
@@ -200,7 +200,7 @@ namespace 象棋算法
 
         }
 
-        public void GetBlackAll(Chessboard phase)
+        public static void GetBlackAll(Chessboard phase)
         {
             int position = 0;
             Point falsePoint = new Point(-1, -1);
