@@ -68,8 +68,8 @@ namespace 象棋算法
             {
                 for (int i = 0; i < 16; i++)
                 {
-                    if (phase.Red_Chessman[i] != -1) troops = troops + Value.capacity[i];
-                }
+                if (phase.Red_Chessman[i] != -1) troops = troops + Value.capacity[i];
+            }
                 Score_for_red.troops = troops - 1;
             }
             
@@ -199,7 +199,6 @@ namespace 象棋算法
             else return 0;
 
         }
-
 
         public void GetBlackAll(Chessboard phase)
         {
