@@ -58,6 +58,11 @@ namespace 象棋算法
             return point;
 
         }
+
+        public static Point Point_reverse(Point a)
+        {
+            return new Point(8 - a.x, 9 - a.y);
+        }
     }
 
 
