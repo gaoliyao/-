@@ -72,18 +72,27 @@ namespace 象棋算法
 
         }
 
-        static List<Chessboard> All_moves=new List<Chessboard>();
+        
 
         public static List<Chessboard> AllMove(Chessboard phase)
         {
+            List<Chessboard> All_moves = new List<Chessboard>();
+            List<Chessboard> moves = new List<Chessboard>();
             int player = Convert.ToInt16(phase.Player);
-            for(int i=0;i<9;i++)
+            Chessboard remember = new Chessboard();
+            remember = phase;
+            for(int i=0;i<10;i++)
             {
-                for(int j=0;j<10;j++)
+                for(int j=0;j<9;j++)
                 {
+                    phase = remember;
                     if (phase.board[i, j] == 0) ;
                     else if (phase.board[i, j] / 100 != player) ;
-                    else All_moves.AddRange(Move(phase, i, j));
+                    else
+                    {
+                        moves = Move(phase, i, j);
+                        if (moves!=null)
+                        All_moves.AddRange(moves); }
                 }
             }
             if (All_moves.Count == 0) return null;
@@ -106,27 +115,32 @@ namespace 象棋算法
 
                 if (who == 1)
                 {
+                    Console.WriteLine("For Red Shuai");
                     if (player == 0) return Red_Move_Shuai(phase, x, y);
                     else return Black_Move_Shuai(phase, x, y);
                 }
                 else if (who == 2)
                 {
+                    Console.WriteLine("For Red Shi");
                     if (player == 0) return Red_Move_Shi(phase, x, y);
                     else return Black_Move_Shi(phase, x, y);
                 }
                 else if (who == 3)
                 {
+                    Console.WriteLine("For Red Xiang");
                     if (player == 0) return Red_Move_Xiang(phase, x, y);
                     else return Black_Move_Xiang(phase, x, y);
                 }
                 else if (who == 4)
                 {
+                    Console.WriteLine("For Red Ma");
                     return Move_Ma(phase, x, y);
                 }
                 else if (who == 5) return Move_Pao(phase, x, y);
                 else if (who == 6) return Move_Ju(phase, x, y);
                 else if (who == 7)
                 {
+                    Console.WriteLine("For Red Bing");
                     if (player == 0) return Red_Move_Bing(phase, x, y);
                     else return Black_Move_Bing(phase, x, y);
                 }
@@ -1349,21 +1363,13 @@ namespace 象棋算法
 
         {
 
-            bool bRet = false;
 
-            do
+            if (point.x < 0 || point.x > 8) return false;
 
-            {
+            if (point.y < 0 || point.y > 9) return false;
+            return true;
 
-                if (point.x < 0 || point.x > 8) break;
-
-                if (point.y < 0 || point.y > 9) break;
-
-                bRet = true;
-
-            } while (false);
-
-            return bRet;
+           
 
         }
 
@@ -1428,12 +1434,12 @@ namespace 象棋算法
                     else e=0;
                     if (motion == 1)
                     {
-                        if (phases.board[x + move_path[i].x + e, y + move_path[i].y] != 0) MaRunable = false;
+                        if (phases.board[x + e,   y ]!= 0) MaRunable = false;
                     }
 
                     else if (motion == 2)     
                     {
-                        if (phases.board[x + move_path[i].x, move_path[i].y + y + e] != 0) MaRunable = false;
+                        if (phases.board[x ,  y + e] != 0) MaRunable = false;
                     }
                     else e=0;
 
@@ -1516,7 +1522,7 @@ namespace 象棋算法
 
             int current = phases.board[x, y];
             
-            for(int i=0; i<9;i++)
+            for(int i=0; i<10;i++)
             {
                 if(Pao_Legal_x(phases,i,x,y))
                 {
@@ -1528,7 +1534,7 @@ namespace 象棋算法
                 }
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 9; i++)
             {
                 if (Pao_Legal_y(phases, i, x, y))
                 {
@@ -1674,12 +1680,12 @@ namespace 象棋算法
 
             int current = phases.board[x, y];
 
-            if(y>4 && phases.board[x,y+1]/100!=self)
+            if(y>5 && phases.board[x,y-1]/100!=self)
             {
                 Chessboard new_phase = phases;
                 //new_phase.board[x, y + 1] = current;
                 //new_phase.board[x, y] = 0;
-                new_phase.move_ptop(x, y, x, y + 1);
+                new_phase.move_ptop(x, y, x, y - 1);
                 moves.Add(new_phase);
             }
             if(y>-1 && y<5)
@@ -1687,7 +1693,7 @@ namespace 象棋算法
                 Chessboard new_phase1 = phases;
                 //new_phase1.board[x, y + 1] = current;
                 //new_phase1.board[x, y] = 0;
-                new_phase1.move_ptop(x, y, x, y+1);
+                new_phase1.move_ptop(x, y, x, y-1);
                 moves.Add(new_phase1);
 
                 Chessboard new_phase2 = phases;
@@ -1715,12 +1721,12 @@ namespace 象棋算法
 
         int current = phases.board[x, y];
 
-        if (y < 5 && phases.board[x, y - 1] / 100 != self)
+        if (y < 5 && phases.board[x, y + 1] / 100 != self)
         {
             Chessboard new_phase = phases;
                 //new_phase.board[x, y - 1] = current;
                 //new_phase.board[x, y] = 0;
-                new_phase.move_ptop(x, y, x, y - 1);
+                new_phase.move_ptop(x, y, x, y + 1);
             moves.Add(new_phase);
         }
         if (y > 4 && y < 10)
@@ -1728,7 +1734,7 @@ namespace 象棋算法
             Chessboard new_phase1 = phases;
                 //new_phase1.board[x, y - 1] = current;
                 //new_phase1.board[x, y] = 0;
-                new_phase1.move_ptop(x, y, x, y - 1);
+                new_phase1.move_ptop(x, y, x, y + 1);
             moves.Add(new_phase1);
 
             Chessboard new_phase2 = phases;
@@ -1740,7 +1746,7 @@ namespace 象棋算法
             Chessboard new_phase3 = phases;
                 //new_phase3.board[x - 1, y] = current;
                 //new_phase3.board[x, y] = 0;
-                new_phase2.move_ptop(x, y, x - 1, y);
+                new_phase2.move_ptop(x, y, x + 1, y);
                 moves.Add(new_phase3);
         }
         if (moves.Count == 0) return null;

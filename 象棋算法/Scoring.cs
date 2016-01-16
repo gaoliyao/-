@@ -26,13 +26,24 @@ namespace 象棋算法
 
         public static int Score(Chessboard phase)
         {
+            int player = Convert.ToInt16(phase.Player);
+            if(player==0)
+            {
+                if (phase.Black_Chessman[0] == 0) return 10000;
+                if (phase.Red_Chessman[0] == 0) return -10000;
+            }
+            if (player == 1)
+            {
+                if (phase.Black_Chessman[0] == 0) return -10000;
+                if (phase.Red_Chessman[0] == 0) return 10000;
+            }
             int score_red = -1;
             int score_black = -1;
             GetScore(phase);
             if (Score_for_red.isGetted == 1) score_red = Score_for_red.All;
             if (Score_for_black.isGetted == 1) score_black = Score_for_black.All;
             if (score_red == -1 || score_black == -1) return -1;
-            int player = Convert.ToInt16(phase.Player);
+            
             if (player == 0) return score_red-score_black;
             else return score_black - score_red;
         }

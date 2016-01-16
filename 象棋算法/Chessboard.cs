@@ -121,28 +121,30 @@ namespace 象棋算法
 
         public void move_ptop(int x,int y,int a,int b)
         {
-            int current = board[x, y];
-            int termini=board[a,b];
-            int index = -1;
-            int player = Convert.ToInt16(Player);
-            if (termini == 0) ;
-            else
+            if (a >= 0 && a < 10 && b >= 0 && b < 9)
             {
-                index = index_number(termini);
-                if(player==0)
+                int current = board[x, y];
+                int termini = board[a, b];
+                int index = -1;
+                int player = Convert.ToInt16(Player);
+                if (termini == 0) ;
+                else
                 {
-                    Red_Chessman[index] = -1;
-                    Red_Location[index] = new Point(-1, -1);
+                    index = index_number(termini);
+                    if (player == 0)
+                    {
+                        Red_Chessman[index] = -1;
+                        Red_Location[index] = new Point(-1, -1);
+                    }
+                    if (player == 1)
+                    {
+                        Black_Chessman[index] = -1;
+                        Black_Location[index] = new Point(-1, -1);
+                    }
                 }
-                if(player==1)
-                {
-                    Black_Chessman[index] = -1;
-                    Black_Location[index] = new Point(-1, -1);
-                }
+                board[a, b] = current;
+                board[x, y] = 0;
             }
-            board[a, b] = current;
-            board[x, y] = 0;
-            
         }
             /*
             int score_red;
